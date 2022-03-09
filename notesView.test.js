@@ -18,7 +18,7 @@ describe('NotesView', () => {
     model.addNote('Go to the gym');
 
     view.displayNotes();
-    console.log(document.body.querySelectorAll('.note'))
+    
     expect(document.body.querySelectorAll('.note').length).toBe(2);
   });
 
@@ -26,8 +26,8 @@ describe('NotesView', () => {
     const inputEl = document.querySelector('#note-input')
     inputEl.value = 'Note1'
     const buttonEl = document.querySelector('#add-note-button')
-    buttonEl.click
-
+    buttonEl.click();
+   
     expect(document.querySelectorAll('div.note').length).toBe(1);
     expect(document.querySelectorAll('div.note')[0].innerText).toEqual('Note1');
   });
