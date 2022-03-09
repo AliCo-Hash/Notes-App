@@ -19,7 +19,7 @@ describe('NotesView', () => {
 
     view.displayNotes();
     
-    expect(document.body.querySelectorAll('.note').length).toBe(2);
+    expect(document.body.querySelectorAll('div.note').length).toBe(2);
   });
 
   it('adds notes', () => {

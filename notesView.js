@@ -23,6 +23,7 @@ class NotesView {
       noteEl.className = 'note';
       this.mainContainerEl.append(noteEl);
     })
+    document.querySelector('#note-input').value = ''
   }
 
   addNewNote(newNote) {
