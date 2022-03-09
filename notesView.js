@@ -29,9 +29,11 @@ class NotesView {
   }
 
   addNewNote(newNote) {
-    this.model.addNote(newNote);
-    
-    this.displayNotes();
+    this.api.createNote(newNote, (data) => {
+      this.model.setNotes(data);
+
+      this.displayNotes();
+    });
   }
 }
 
