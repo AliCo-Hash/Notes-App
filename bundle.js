@@ -65,8 +65,6 @@
   var NotesView = require_notesView();
   var model = new NotesModel();
   var view = new NotesView(model);
-  model.addNote("This is an example note");
-  view.displayNotes();
   console.log("Hello from the developer console!");
   console.log("The notes app is running");
   console.log(model.getNotes());
