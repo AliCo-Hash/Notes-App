@@ -27,7 +27,7 @@ describe('NotesView', () => {
     inputEl.value = 'Note1'
     const buttonEl = document.querySelector('#add-note-button')
     buttonEl.click();
-   
+    
     expect(document.querySelectorAll('div.note').length).toBe(1);
     expect(document.querySelectorAll('div.note')[0].innerText).toEqual('Note1');
   });

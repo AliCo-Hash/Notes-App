@@ -5,10 +5,15 @@
 // on Mac (using Chrome), use Option+Command+J to open the console and see this message.
 const NotesModel = require('./notesModel');
 const NotesView = require('./notesView');
+const NotesApi = require('./notesApi')
 
+const api = new NotesApi();
 const model = new NotesModel();
-const view = new NotesView(model);
+const view = new NotesView(model, api);
 
-console.log('Hello from the developer console!');
-console.log('The notes app is running');
 console.log(model.getNotes());
+
+api.loadNotes((notes) => {
+  model.setNotes(notes);
+  view.displayNotes();
+});
