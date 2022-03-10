@@ -1,7 +1,7 @@
 class NotesApi {
    loadNotes(callback) {
     fetch('http://localhost:3000/notes')
-    .then(responce => responce.json())
+    .then(response => response.json())
     .then(data => {
       callback(data)
     });

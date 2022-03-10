@@ -17,7 +17,6 @@ class NotesModel {
   setNotes(data) {
     this.notes = data
   }
-
 }
 
 module.exports = NotesModel

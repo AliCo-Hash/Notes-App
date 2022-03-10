@@ -39,7 +39,10 @@
           this.buttonEl = document.querySelector("#add-note-button");
           this.buttonEl.addEventListener("click", () => {
             const newNote = document.querySelector("#note-input").value;
-            this.addNewNote(newNote);
+            this.api.createNote(newNote, (data) => {
+              this.addNewNote(newNote);
+              this.displayNotes();
+            });
           });
         }
         displayNotes() {
@@ -56,10 +59,7 @@
           document.querySelector("#note-input").value = "";
         }
         addNewNote(newNote) {
-          this.api.createNote(newNote, (data) => {
-            this.model.setNotes(data);
-            this.displayNotes();
-          });
+          this.model.addNote(newNote);
         }
       };
       module.exports = NotesView2;
@@ -71,7 +71,7 @@
     "notesApi.js"(exports, module) {
       var NotesApi2 = class {
         loadNotes(callback) {
-          fetch("http://localhost:3000/notes").then((responce) => responce.json()).then((data) => {
+          fetch("http://localhost:3000/notes").then((response) => response.json()).then((data) => {
             callback(data);
           });
         }
