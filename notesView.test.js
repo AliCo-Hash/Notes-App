@@ -5,12 +5,15 @@
 const fs = require('fs');
 const NotesView = require('./notesView')
 const NotesModel = require('./notesModel');
+const NotesApi = require('./notesApi')
+require('jest-fetch-mock').enableMocks()
 
 describe('NotesView', () => {
   beforeEach(() => {
     document.body.innerHTML = fs.readFileSync('./index.html');
     model = new NotesModel
-    view = new NotesView(model)
+    api = new NotesApi
+    view = new NotesView(model, api)
   })
 
   it('displays 2 notes', () => {
@@ -22,14 +25,24 @@ describe('NotesView', () => {
     expect(document.body.querySelectorAll('div.note').length).toBe(2);
   });
 
-  it('adds notes', () => {
-    const inputEl = document.querySelector('#note-input')
+  it('adds notes', (done) => {
+    const inputEl = document.body.querySelector('#note-input')
     inputEl.value = 'Note1'
-    const buttonEl = document.querySelector('#add-note-button')
+    fetch.mockResponseOnce(JSON.stringify({
+      note: 'Note1'
+    }))
+    const buttonEl = document.body.querySelector('#add-note-button')
     buttonEl.click();
     
-    expect(document.querySelectorAll('div.note').length).toBe(1);
-    expect(document.querySelectorAll('div.note')[0].innerText).toEqual('Note1');
+    setTimeout(() => {
+      try {
+      expect(document.body.querySelectorAll('div.note').length).toBe(1);
+      expect(document.body.querySelectorAll('div.note')[0].innerText).toEqual('Note1');
+      done();
+      } catch(error) {
+        done(error);
+      }
+    })
   });
 
   it('clear previous notes before displaying', () => {
