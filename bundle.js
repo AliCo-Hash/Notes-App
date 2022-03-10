@@ -82,9 +82,7 @@
               "Content-Type": "application/json"
             },
             body: JSON.stringify({ content: `${note}` })
-          }).then((response) => {
-            return response.json();
-          }).then((data) => {
+          }).then((response) => response.json()).then((data) => {
             callback(data);
           });
         }

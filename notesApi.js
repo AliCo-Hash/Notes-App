@@ -16,9 +16,7 @@ class NotesApi {
       },
       body: JSON.stringify({content: `${note}`})
     })
-    .then(response => { 
-      return response.json()
-    })
+    .then(response => response.json())
     .then(data => {
       callback(data)
     });

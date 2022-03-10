@@ -14,13 +14,13 @@ describe('NotesApi class', () => {
     })
   })
 
-  it('calls fetch and posts a notes', async () => {
+  it('calls fetch and posts notes', async () => {
     const api = new NotesApi();
     fetch.mockResponseOnce(JSON.stringify({
       note: 'Note1'
     }));
 
-    api.createNote('Note1', (notes) => {
+    api.createNote('note', (notes) => {
       expect(notes.note).toBe('Note1');
     });
   })

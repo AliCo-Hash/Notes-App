@@ -22,23 +22,23 @@ describe('NotesView', () => {
 
     view.displayNotes();
     
-    expect(document.body.querySelectorAll('div.note').length).toBe(2);
+    expect(document.querySelectorAll('div.note').length).toBe(2);
   });
 
   it('adds notes', (done) => {
-    const inputEl = document.body.querySelector('#note-input')
+    const inputEl = document.querySelector('#note-input')
     inputEl.value = 'Note1'
     fetch.mockResponseOnce(JSON.stringify({
       note: 'Note1'
     }))
-    const buttonEl = document.body.querySelector('#add-note-button')
+    const buttonEl = document.querySelector('#add-note-button')
     buttonEl.click();
     
     setTimeout(() => {
       try {
-      expect(document.body.querySelectorAll('div.note').length).toBe(1);
-      expect(document.body.querySelectorAll('div.note')[0].innerText).toEqual('Note1');
-      done();
+        expect(document.querySelectorAll('div.note').length).toBe(1);
+        expect(document.querySelectorAll('div.note')[0].innerText).toEqual('Note1');
+        done();
       } catch(error) {
         done(error);
       }
